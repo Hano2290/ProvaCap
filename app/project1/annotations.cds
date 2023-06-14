@@ -1,0 +1,1 @@
+using CristianoService as service from '../../srv/service';
