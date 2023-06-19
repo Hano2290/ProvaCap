@@ -1,0 +1,30 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+>
+
+<Dialog
+    
+    title = "Cosa vuoi fare?">
+
+    <form:SimpleForm layout="ColumnLayout">
+            <Label text="Product ID" width="50%" />
+            <Input value="{formsAdd>/id}"   />
+            <Label text="Product Name" width="50%" />
+            <Input value="{formsAdd>/name}"  />
+            <Label text="Product Materials" width="50%" />
+            <Input value="{formsAdd>/materials}"  />
+            
+    </form:SimpleForm>
+
+    <Button press="CloseDial" text= "Chiudi"  />
+    <Button press="onUpPress" text="Modifica" type="Attention" />
+    <Button press="remOnPress" text="Elimina" type="Critical" />
+
+
+
+</Dialog>
+</c:FragmentDefinition>

@@ -5,9 +5,10 @@
 sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
-        "project1/model/models"
+        "project1/model/models",
+        "sap/ui/model/json/JSONModel"
     ],
-    function (UIComponent, Device, models) {
+    function (UIComponent, Device, models, JSONModel) {
         "use strict";
 
         return UIComponent.extend("project1.Component", {
@@ -29,7 +30,17 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
-            }
+
+                //setto modello per formAdd:
+                var oModel = new JSONModel({
+                    id: "",
+                    name: "",
+                    materials: "",
+
+            });
+            this.setModel(oModel,"formsAdd");
+        
+            },
         });
     }
 );

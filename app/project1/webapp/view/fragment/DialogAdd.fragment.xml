@@ -1,0 +1,64 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+>
+
+<Dialog
+    
+    title = "Form">
+
+    <form:SimpleForm layout="ColumnLayout">
+            <Label text="Product ID" width="50%" />
+            <Input value="{formsAdd>/id}"   />
+            <Label text="Product Name" width="50%" />
+            <Input value="{formsAdd>/name}"  />
+            <Label text="Product Materials" width="50%" />
+            <Input value="{formsAdd>/materials}"  />
+            
+    </form:SimpleForm>
+
+    <Button press="CloseDial" text= "Chiudi"  />
+    <Button press="addOnPress" text="Aggiungi"/>
+    
+
+
+
+</Dialog>
+</c:FragmentDefinition>
+
+
+
+<!-- <core:FragmentDefinition 
+xmlns:form="sap.ui.layout.form"
+xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+    xmlns:c="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    >
+	<Dialog id="addDialog" title="Add Dialog">
+        
+		<Page id="pageAdd" title="{i18n>titleAdd}">
+			
+				<f:SimpleForm >
+					
+						<Label text="Product ID" />
+						<Text text="{formsAdd>/id}" />
+
+						<Label text="Product Name" />
+						<Text text="{formsAdd>/name}" />
+
+						<Label text="Product Materials" />
+						<Text text="{formsAdd>/materials}" />
+					
+				</f:SimpleForm>
+			
+			<Button press="CloseDial" text= "Chiudi" />
+		</Page>
+    </Dialog>
+
+</core:FragmentDefinition> -->

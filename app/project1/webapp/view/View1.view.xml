@@ -1,7 +1,72 @@
 <mvc:View controllerName="project1.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns:core="sap.ui.core" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns="sap.m" 
+xmlns:fb="sap.ui.comp.filterbar" 
+xmlns:ui="sap.ui.table" 
+xmlns:f="sap.f" 
+xmlns:main="sap.ui.webc.main"
+    >
     <Page id="page" title="{i18n>title}">
-        <content />
+    <ScrollContainer width="100%" height="100%" vertical="true" horizontal="true">
+
+	<VBox >
+		<Button text="AGGIUNGI PRODOTTI" type="Emphasized" press="addLineP"></Button>
+	</VBox>
+        <Table id="idProductsTable" alternateRowColors="true" inset="false" items="{Products>/}">
+		
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Product ID" />
+			</Column>
+			<Column>
+				<Text text="Product Name" />
+			</Column>
+			<Column>
+				<Text text="Product Materials" />
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem  press="onRiga" vAlign="Middle" type="Active" >
+				<cells>
+					<Text text="{Products>id}"  />
+                    <Text text="{Products>name}"  />
+                    <Text text="{Products>materials}"  />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+	<VBox >
+		<Button text="AGGIUNGI CLIENTI" type="Emphasized" press="addLine"></Button>
+	</VBox>
+    <Table id="idCustomersTable" alternateRowColors="true" inset="false" items="{Customers>/Customers}">
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Name ID" />
+			</Column>
+			<Column>
+				<Text text="Name" />
+			</Column>
+			<Column>
+				<Text text="Address" />
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<Text text="{Customers>id}"  />
+                    <Text text="{Customers>name}"  />
+                    <Text text="{Customers>address}"  />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+    </ScrollContainer>
     </Page>
 </mvc:View>
