@@ -19,7 +19,8 @@ sap.ui.define([
                 //prodotti
                 var oProduct = new sap.ui.model.json.JSONModel();
                 var aProduct = await this._getHanaData("/Products");
-                oProduct.setData(aProduct);
+                // oProduct.setData(aProduct);
+                oProduct.setProperty("/", aProduct)
                 this.getView().setModel(oProduct, "Products");
 
                 //prodotti
@@ -98,7 +99,7 @@ sap.ui.define([
                 {success: function (oDataIn, oResponse) {
                     
                     console.log(oDataIn.results, oResponse)
-                    // this.getView().getModel("Products").refresh();
+                    
                 },
                 error: function (error) {
                     console.log(error)
@@ -109,9 +110,10 @@ sap.ui.define([
                 //per mostrare a video SENZA dover ricaricare la pagina
                 var oProduct = new sap.ui.model.json.JSONModel();
                 var aProduct = await this._getHanaData("/Products");
-                oProduct.setData(aProduct);
+                // oProduct.setData(aProduct);
+                oProduct.setProperty("/", aProduct)
                 this.getView().setModel(oProduct, "Products");
-                
+                // this.getView().getModel("Products").refresh();
 
                 
             },
@@ -152,40 +154,47 @@ sap.ui.define([
                 //per mostrare a video SENZA dover ricaricare la pagina
                 var oProduct = new sap.ui.model.json.JSONModel();
                 var aProduct = await this._getHanaData("/Products");
-                oProduct.setData(aProduct);
+                // oProduct.setData(aProduct);
+                oProduct.setProperty("/", aProduct)
                 this.getView().setModel(oProduct, "Products");
-                // Chiudi la dialog
-                this.pDialog.then(function (oDialog) {
-                    oDialog.close();
-                });
+                
             },
 
             //per modificare
-            onUpPress: async function (e) {
+            onUpPress: function (e) {
                 debugger
                 var selezionato = e.getSource().getParent().getModel("formsAdd").getData();
                 var xsoDataModelReport = this.getOwnerComponent().getModel("modelDue");
             
                 xsoDataModelReport.update(`/Products(${selezionato.id})`, selezionato, {
-                    success: function () {
+                    success: async function() {
                         console.log("Record modificato con successo!");
-                    },
+                        this.pDialogDue.then(function (oDialog) {
+                            oDialog.close();
+                        });
+                        var oProduct = new sap.ui.model.json.JSONModel();
+                        var aProduct = await this._getHanaData("/Products");
+                        
+                        oProduct.setProperty("/", aProduct)
+                        this.getView().setModel(oProduct, "Products");
+
+                    }.bind(this),
                     error: function (oError) {
                         console.error("Errore durante la modifica del record:", oError);
                     }
                 });
                  // Aggiorna la vista dopo la modifica del record
-                    var oProduct = new sap.ui.model.json.JSONModel();
-                    var aProduct = await this._getHanaData("/Products");
-                    oProduct.setData(aProduct);
-                    this.getView().setModel(oProduct, "Products");
-
+                //  var oProduct = new sap.ui.model.json.JSONModel();
+                //  var aProduct = await this._getHanaData("/Products");
+                //  // oProduct.setData(aProduct);
+                //  oProduct.setProperty("/", aProduct)
+                //  this.getView().setModel(oProduct, "Products");
                     
 
                     // Chiudi la dialog
-                    this.pDialog.then(function (oDialog) {
-                        oDialog.close();
-                    });
+                    // this.pDialog.then(function (oDialog) {
+                    //     oDialog.close();
+                    // });
             },
 
               
